@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/static/mujstyl.css"/>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<title>Vodacky kurz</title>
+
+<body>
+
+<div class="row d-flex align-items-center justify-content-center mb-5">
+    <div class="col-12">
+        <h1 class="h1 m-3">Rozsazení v lodích na vodáckém kurzu 2023 SPŠE Ječná</h1>
+    </div>
+</div>
+<div class="row d-flex align-items-center justify-content-center">
+    <div class="col-lg-4 d-flex align-items-center justify-content-center">
+        <table class="table table-bordered table-striped table-hover mx-3">
+            <thead>
+                <tr>
+                    <th scope="col">Prezdivka</th>
+                    <th scope="col">Kamarad</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for ucastnik in ucastnici %}
+                <tr>
+                    <td>{{ ucastnik[0] }}</td>
+                    <td>{{ ucastnik[1] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row mb-3 d-flex align-items-center justify-content-center">
+    <div class="col-6 d-flex align-items-center justify-content-center">
+        <form action="/registrace" method="get">
+            <button class="btn btn-primary" type="submit">Registrace</button>
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>
