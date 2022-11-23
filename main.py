@@ -21,8 +21,11 @@ def registrovat():
     je_plavec = int(request.form.get('je_plavec'))
     kamarad = request.form.get('kanoe_kamarad').strip()
 
+    if nick in (x[0] for x in registrovani):
+        return "Prezdivka musi byt unikatni.", 400
+
     if not je_plavec:
-        return "Musite umet plavat", 400
+        return "Musite umet plavat.", 400
 
     if not (1 < len(nick) < 21):
         return "bro", 400
