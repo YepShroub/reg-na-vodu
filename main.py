@@ -35,8 +35,6 @@ def registrovat():
 
     registrovani.append((nick, kamarad))
 
-    print(registrovani)
-
     return "Registrace byla uspesna", 200
 
 
