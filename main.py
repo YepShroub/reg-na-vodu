@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request
+import json
 
 app = Flask(__name__, static_url_path='/static', static_folder='static', template_folder='templates')
 
-registrovani = [("magor", "")]
+
+with open("static/registrovani.json") as file:
+    registrovani = json.load(file)
 
 
 @app.route('/', methods=['GET'])
@@ -22,7 +25,7 @@ def registrovat():
     kamarad = request.form.get('kanoe_kamarad').strip()
 
     if nick in (x[0] for x in registrovani):
-        return "Prezdivka musi byt unikatni.", 400
+        return "Prezdivka je zabrana.", 400
 
     if not je_plavec:
         return "Musite umet plavat.", 400
@@ -34,6 +37,8 @@ def registrovat():
         return "bro", 400
 
     registrovani.append((nick, kamarad))
+    with open("static/registrovani.json", "w") as outfile:
+        outfile.write(json.dumps(registrovani))
 
     return "Registrace byla uspesna", 200
 

@@ -12,7 +12,7 @@ $(document).ready(function() {
 
         $.get("/api/nickname/" + nick, function(data, status){
             if(data["prihlasen"]){
-
+                return false;
             }
         });
 
@@ -32,5 +32,21 @@ $(document).ready(function() {
                 return true;
             }
         );
+    });
+
+    $("#nick").change(function(){
+        nick = $("#nick").val();
+        $.get("/api/nickname/" + nick, function(data, status){
+            if(nick.length < 2 || nick.length > 20){
+                $("#nick").css("background-color", "");
+                return
+            }
+            if(data["prihlasen"]){
+                $("#nick").css("background-color", "#ff9999");
+            }
+            else{
+                $("#nick").css("background-color", "#33ff57");
+            }
+        });
     });
 });
